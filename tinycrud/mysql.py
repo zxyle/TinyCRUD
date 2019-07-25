@@ -22,7 +22,7 @@ class MySQL(DataBase):
                                           db=self.u.db,
                                           charset='utf8mb4',
                                           cursorclass=pymysql.cursors.DictCursor)
-        self.cursor_status = False
+        self.open = False
         self.cursor = None
 
     def insert(self, tb, doc):
@@ -48,9 +48,9 @@ class MySQL(DataBase):
             self.insert(tb, doc)
 
     def _get_cursor(self):
-        if not self.cursor_status:
-            self.cursor_status = True
+        if not self.open:
             self.cursor = self.connection.cursor()
+            self.open = True
         return self.cursor
 
     def _execute(self, sql, data=None):
@@ -93,8 +93,8 @@ class MySQL(DataBase):
         )ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;"""
         self._execute(sql)
 
-    def drop_tb(self, table_name=""):
-        sql = f"DROP TABLE IF EXISTS {table_name};"
+    def drop_tb(self, tb=""):
+        sql = f"DROP TABLE IF EXISTS {tb};"
         self._execute(sql)
 
     def query(self, tb, condition):
