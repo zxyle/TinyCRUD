@@ -16,7 +16,7 @@ from tinycrud.mysql import MySQL
 my = MySQL()
 my.insert(tb="cities", doc={"name": "Hangzhou"})
 
-rows = my.query(tb_name="cities", condition={})
+rows = my.query(tb="cities", condition={})
 ```
 
 ## Installation

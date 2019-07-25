@@ -21,8 +21,8 @@ class Mongo(DataBase):
         client = pymongo.MongoClient(self.uri)
         self.db = client[self.u.db]
 
-    def insert(self, tb_name, doc):
-        post = self.db[tb_name]
+    def insert(self, tb, doc):
+        post = self.db[tb]
         try:
             post.insert_one(doc)
         except DuplicateKeyError:
@@ -30,8 +30,8 @@ class Mongo(DataBase):
         else:
             print("write success.")
 
-    def query(self, tb_name, condition):
-        post = self.db[tb_name]
+    def query(self, tb, condition):
+        post = self.db[tb]
         return [row for row in post.find(condition)]
 
     def ensure_index(self):

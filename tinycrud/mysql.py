@@ -97,12 +97,12 @@ class MySQL(DataBase):
         sql = f"DROP TABLE IF EXISTS {table_name};"
         self._execute(sql)
 
-    def query(self, tb_name, condition):
+    def query(self, tb, condition):
         # TODO 复杂的话 直接提供sql操作
         condition_sql = " AND ".join([f"{k}=\"{v}\"" for k, v in condition.items()])
         if condition_sql:
             condition_sql = f"WHERE {condition_sql}"
-        sql = f"SELECT * FROM {tb_name} {condition_sql};"
+        sql = f"SELECT * FROM {tb} {condition_sql};"
         results = self._execute(sql)
         return results
 
