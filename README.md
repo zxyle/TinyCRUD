@@ -3,6 +3,7 @@
 
 [![Build Status](https://travis-ci.org/zxyle/TinyCRUD.svg?branch=master)](https://travis-ci.org/zxyle/TinyCRUD)
 [![pypi version](https://img.shields.io/pypi/v/tinycrud.svg)](https://pypi.org/project/TinyCRUD/)
+[![GitHub license](https://img.shields.io/github/license/zxyle/TinyCRUD.svg)](https://github.com/zxyle/TinyCRUD/blob/master/LICENSE)
 
 Implement a set of interfaces to operate databases such as MySQL, MongoDB, and Redis.
 His goal is not to build a powerful ORM framework like [SQLAlchemy](https://github.com/zzzeek/sqlalchemy),
