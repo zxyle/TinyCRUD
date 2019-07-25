@@ -9,7 +9,7 @@ requires = [
 # python setup.py sdist upload
 setup(
     name="TinyCRUD",
-    version="0.0.2",
+    version="0.1.0",
     author="Zheng",
     author_email="zxyful@gmail.com",
     description="tinycrud",
