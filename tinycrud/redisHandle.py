@@ -14,10 +14,10 @@ from tinycrud.uri import UriParser
 class Redis(DataBase):
     def __init__(self, uri=None):
         self.uri = uri or DEFAULT_REDIS_URI
-        self.handle = UriParser(self.uri)
+        self.u = UriParser(self.uri)
 
-        pool = redis.ConnectionPool(host='127.0.0.1', port=6379, db=0,
-                                    password=None)
+        pool = redis.ConnectionPool(host=self.u.host, port=self.u.port, db=self.u.db,
+                                    password=self.u.password)
         self.r = redis.Redis(connection_pool=pool)
 
     def test(self):
