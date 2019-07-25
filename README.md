@@ -1,5 +1,5 @@
 # TinyCRUD
-*One API, More Database*.
+*One API, More Database.*
 
 [![Build Status](https://travis-ci.org/zxyle/TinyCRUD.svg?branch=master)](https://travis-ci.org/zxyle/TinyCRUD)
 
@@ -11,8 +11,8 @@ just to satisfy the most basic CRUD operations.
 ```python
 from tinycrud.mysql import MySQL
 
-mq = MySQL()
-mq.insert("cities", {"name":"Shanghai"})
+my = MySQL()
+my.insert("cities", {"name":"Shanghai"})
 ```
 
 ## Installation
