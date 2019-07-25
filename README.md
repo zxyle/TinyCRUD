@@ -12,7 +12,9 @@ just to satisfy the most basic CRUD operations.
 from tinycrud.mysql import MySQL
 
 my = MySQL()
-my.insert("cities", {"name":"Shanghai"})
+my.insert(tb="cities", doc={"name": "Hangzhou"})
+
+rows = my.query(tb_name="cities", condition={})
 ```
 
 ## Installation
