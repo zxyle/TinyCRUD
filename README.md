@@ -15,6 +15,11 @@ mq = MySQL()
 mq.insert("cities", {"name":"Shanghai"})
 ```
 
+## Installation
+```
+pip install tinycrud
+```
+
 ## Features
 * MySQL
 * MongoDB
