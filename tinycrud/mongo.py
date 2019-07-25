@@ -10,27 +10,29 @@ from pymongo.errors import DuplicateKeyError
 
 from tinycrud.base import DataBase
 from tinycrud.config import DEFAULT_MONGODB_URI
+from tinycrud.uri import UriParser
 
 
 class Mongo(DataBase):
-    def __init__(self, uri=None, db=None):
+    def __init__(self, uri=None):
         self.uri = uri or DEFAULT_MONGODB_URI
         self.tz = pytz.timezone('Asia/Shanghai')
-
+        self.u = UriParser(self.uri)
         client = pymongo.MongoClient(self.uri)
-        self.db = client[db]
+        self.db = client[self.u.db]
 
-    def insert(self, doc, col="test"):
-        post = self.db[col]
+    def insert(self, tb_name, doc):
+        post = self.db[tb_name]
         try:
             post.insert_one(doc)
         except DuplicateKeyError:
-            print("重复丢弃")
+            print("duplicate.")
         else:
             print("write success.")
 
     def query(self, tb_name, condition):
-        pass
+        post = self.db[tb_name]
+        return [row for row in post.find(condition)]
 
     def ensure_index(self):
         pass
