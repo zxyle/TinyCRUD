@@ -6,13 +6,14 @@
 
 import os
 
+from tinycrud.config import DEFAULT_MYSQL_URI
 from tinycrud.mysql import MySQL
 
 ENV = os.getenv("ENV")
 if ENV == "CI":
     uri = "mysql+pymysql://root@localhost:3306/test?charset=utf8mb4"
 else:
-    uri = "mysql+pymysql://root:123456@localhost:3306/test?charset=utf8mb4"
+    uri = DEFAULT_MYSQL_URI
 my = MySQL(uri)
 
 

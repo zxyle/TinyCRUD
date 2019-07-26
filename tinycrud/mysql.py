@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # Author: Zheng <zxyful@gmail.com>
 # Date: 2019/7/25
-# Desc: 
+# Desc: MySQL
 
 import pymysql
 
@@ -78,10 +78,12 @@ class MySQL(DataBase):
 
         sql = f"CREATE DATABASE `{db_name}` DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;"
         self._execute(sql)
+        print("create database: `{}` success.".format(db_name))
 
     def drop_db(self, db_name=""):
         sql = f"DROP DATABASE IF EXISTS {db_name};"
         self._execute(sql)
+        print("drop database: `{}` success.".format(db_name))
 
     def create_tb(self, tb=""):
         sql = f"""
@@ -97,6 +99,7 @@ class MySQL(DataBase):
     def drop_tb(self, tb=""):
         sql = f"DROP TABLE IF EXISTS {tb};"
         self._execute(sql)
+        print("drop table: `{}` success.".format(tb))
 
     def query(self, tb, condition):
         # TODO 复杂的话 直接提供sql操作
