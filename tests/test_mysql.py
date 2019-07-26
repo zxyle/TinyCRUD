@@ -4,10 +4,16 @@
 # Date: 2019/7/26
 # Desc: 
 
+import os
 
 from tinycrud.mysql import MySQL
 
-my = MySQL("mysql+pymysql://root:123456@localhost:3306/test?charset=utf8mb4")
+ENV = os.getenv("ENV")
+if ENV == "CI":
+    uri = "mysql+pymysql://root@localhost:3306/test?charset=utf8mb4"
+else:
+    uri = "mysql+pymysql://root:123456@localhost:3306/test?charset=utf8mb4"
+my = MySQL(uri)
 
 
 def test_insert():
