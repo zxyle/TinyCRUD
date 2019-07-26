@@ -11,6 +11,8 @@ my = MySQL("mysql+pymysql://root:@localhost:3306/test?charset=utf8mb4")
 
 
 def test_insert():
-    my.insert("students", {"name": "zx", "age": 1, "address": "Hangzhou"})
-    rows = my.query("students", {})
+    table_name = "students"
+    my.create_tb(table_name)
+    my.insert(table_name, {"name": "zx", "age": 1, "address": "Hangzhou"})
+    rows = my.query(table_name, {})
     assert type(rows) is dict
