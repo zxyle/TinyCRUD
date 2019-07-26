@@ -7,12 +7,14 @@
 
 from tinycrud.mysql import MySQL
 
-my = MySQL("mysql+pymysql://root:@localhost:3306/test?charset=utf8mb4")
+my = MySQL("mysql+pymysql://root:123456@localhost:3306/test?charset=utf8mb4")
 
 
 def test_insert():
     table_name = "students"
+    my.drop_tb(table_name)
     my.create_tb(table_name)
-    my.insert(table_name, {"name": "zx", "age": 1, "address": "Hangzhou"})
+    insert_data = {"name": "zx", "age": 1, "address": "Hangzhou"}
+    my.insert(table_name, insert_data)
     rows = my.query(table_name, {})
-    assert type(rows) is dict
+    assert rows.get("name") == insert_data.get("name") and rows.get("address") == insert_data.get("address")

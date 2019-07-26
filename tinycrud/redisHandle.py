@@ -23,8 +23,15 @@ class Redis(DataBase):
     def test(self):
         return self.r.ping()
 
-    def query(self, tb_name, condition):
-        pass
+    def insert(self, tb, doc):
+        self.r.set(tb, str(doc))
+
+    def query(self, tb, condition):
+        result = self.r.get(tb)
+        if isinstance(result, bytes):
+            return eval(str(result, encoding="utf-8"))
+
+        return result
 
     def __repr__(self):
         version = self.r.info("Server").get("redis_version")
