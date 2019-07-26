@@ -11,3 +11,6 @@ class DataBase:
 
     def insert(self, tb, doc):
         raise NotImplementedError
+
+    def update(self, tb, doc, condition):
+        raise NotImplementedError

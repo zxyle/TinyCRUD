@@ -110,6 +110,24 @@ class MySQL(DataBase):
         results = self._execute(sql)
         return results
 
+    def update(self, tb, doc, condition):
+        # build sql
+        fields, values = [], []
+        for field, value in doc.items():
+            fields.append(f"`{field}`=%s")
+            values.append(value)
+
+        fields_sql = ", ".join(fields)
+        # TODO 自动获取 >= =
+        condition_sql = " AND ".join([f"{k}{v}" for k, v in condition.items()])
+        if condition_sql:
+            condition_sql = f"WHERE {condition_sql}"
+
+        sql = f"UPDATE `{tb}` SET {fields_sql} {condition_sql};"
+        print(sql)
+        self._execute(sql, values)
+        print("update success.")
+
     def __del__(self):
         """close connection and cursor"""
         self._get_cursor().close()
