@@ -6,7 +6,8 @@
 
 
 class DataBase:
-    # TODO 需要在父类实现一些方法 定义
+    def query(self, tb, condition):
+        raise NotImplementedError
 
-    def query(self, tb_name, condition):
+    def insert(self, tb, doc):
         raise NotImplementedError

@@ -6,6 +6,12 @@ requires = [
     "pytz==2019.1",
     "redis==3.2.1",
 ]
+
+tests_require = [
+    "pytest==5.0.1",
+]
+
+
 # python setup.py sdist upload
 setup(
     name="TinyCRUD",
@@ -18,6 +24,7 @@ setup(
     url="https://github.com/zxyle/TinyCRUD",
     packages=['tinycrud'],
     install_requires=requires,
+    tests_require=tests_require,
     classifiers=[
         "Environment :: Web Environment",
         "Intended Audience :: Developers",

@@ -5,6 +5,13 @@ language: python
 python:
   - "3.6"
   - "3.7"
+
+services:
+  - mysql
+
+before_install:
+  - mysql -e 'CREATE DATABASE test DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;'
+
 install:
   - python setup.py install
 
