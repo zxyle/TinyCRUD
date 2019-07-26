@@ -70,7 +70,7 @@ class MySQL(DataBase):
             print(e)
             self.connection.rollback()
         else:
-            print("execute success.")
+            pass
 
     def create_db(self, db_name=""):
         if not db_name:
@@ -83,15 +83,16 @@ class MySQL(DataBase):
         sql = f"DROP DATABASE IF EXISTS {db_name};"
         self._execute(sql)
 
-    def create_tb(self, table_name=""):
+    def create_tb(self, tb=""):
         sql = f"""
-        CREATE TABLE IF NOT EXISTS `{table_name}`(
+        CREATE TABLE IF NOT EXISTS `{tb}`(
            id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
            name VARCHAR(20) NULL,
            age TINYINT UNSIGNED NULL,
            address VARCHAR(50) NULL
         )ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;"""
         self._execute(sql)
+        print("create table: `{}` success.".format(tb))
 
     def drop_tb(self, tb=""):
         sql = f"DROP TABLE IF EXISTS {tb};"
