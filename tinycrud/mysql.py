@@ -76,7 +76,7 @@ class MySQL(DataBase):
         if not db_name:
             raise ValueError("db name not allowed to be empty.")
 
-        sql = f"CREATE DATABASE `{db_name}` DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;"
+        sql = f"CREATE DATABASE IF NOT EXISTS `{db_name}` DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;"
         self._execute(sql)
         print("create database: `{}` success.".format(db_name))
 
@@ -134,6 +134,7 @@ class MySQL(DataBase):
         self.connection.close()
 
     def __repr__(self):
-        sql = "SELECT version() FROM dual;"
-        version = self._execute(sql).get("version()")
+        key = "version()"
+        sql = f"SELECT {key} FROM dual;"
+        version = self._execute(sql).get(key)
         return "MySQL:<{}> at {}.".format(version, self.connection.host_info)

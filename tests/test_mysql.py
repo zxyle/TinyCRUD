@@ -11,6 +11,7 @@ from tinycrud.mysql import MySQL
 
 ENV = os.getenv("ENV")
 if ENV == "CI":
+    # No password by default in Travis CI ENV
     uri = "mysql+pymysql://root@localhost:3306/test?charset=utf8mb4"
 else:
     uri = DEFAULT_MYSQL_URI
