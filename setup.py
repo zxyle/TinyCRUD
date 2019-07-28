@@ -15,11 +15,13 @@ tests_require = [
 # python setup.py sdist upload
 setup(
     name="TinyCRUD",
-    version="0.1.1",
+    version="0.1.2",
     author="Zheng",
     author_email="zxyful@gmail.com",
-    description="tinycrud",
-    long_description="",
+    description="One API, More Database.",
+    long_description="Implement a set of interfaces to operate databases such as MySQL, MongoDB, and Redis. "
+                     "His goal is not to build a powerful ORM framework like SQLAlchemy, "
+                     "just to satisfy the most basic CRUD operations.",
     license="MIT",
     url="https://github.com/zxyle/TinyCRUD",
     packages=['tinycrud'],
