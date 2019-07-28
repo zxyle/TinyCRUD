@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 requires = [
     "pymongo==3.8.0",
@@ -11,20 +11,21 @@ tests_require = [
     "pytest==5.0.1",
 ]
 
+with open("README.md", 'r') as f:
+    long_description = f.read()
 
 # python setup.py sdist upload
 setup(
     name="TinyCRUD",
-    version="0.1.2",
+    version="0.1.3",
     author="Zheng",
     author_email="zxyful@gmail.com",
     description="One API, More Database.",
-    long_description="Implement a set of interfaces to operate databases such as MySQL, MongoDB, and Redis. "
-                     "His goal is not to build a powerful ORM framework like SQLAlchemy, "
-                     "just to satisfy the most basic CRUD operations.",
+    long_description=long_description,
+    long_description_content_type="text/markdown",
     license="MIT",
     url="https://github.com/zxyle/TinyCRUD",
-    packages=['tinycrud'],
+    packages=find_packages(),
     install_requires=requires,
     tests_require=tests_require,
     classifiers=[
@@ -35,6 +36,8 @@ setup(
         "Topic :: Utilities",
         "Topic :: Internet",
         "Topic :: Software Development :: Libraries :: Python Modules",
+        "License :: OSI Approved :: MIT License",
+        "Natural Language :: English",
         "Programming Language :: Python",
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.6',
