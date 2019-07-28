@@ -17,6 +17,9 @@ my = MySQL()
 my.insert(tb="cities", doc={"name": "Hangzhou"})
 
 rows = my.query(tb="cities", condition={})
+
+# Use SQL directly
+my.execute("SELECT `User` FROM `mysql.user`;")
 ```
 
 ## Installation

@@ -22,7 +22,7 @@ class MySQL(DataBase):
                                           db=self.u.db,
                                           charset='utf8mb4',
                                           cursorclass=pymysql.cursors.DictCursor)
-        self.open = False
+        self._open = False
         self.cursor = None
 
     def insert(self, tb, doc):
@@ -41,19 +41,25 @@ class MySQL(DataBase):
         fields_sql = ", ".join(fields)
         values_sql = ", ".join(["%s" for _ in range(len(values))])
         sql = f"INSERT INTO `{tb}` ({fields_sql}) VALUES ({values_sql});"
-        self._execute(sql, values)
+        self.execute(sql, values)
 
     def insert_many(self, tb, doc_list):
+        """
+
+        :param tb: mysql table name
+        :param doc_list: [{}, {}, ...]
+        :return:
+        """
         for doc in doc_list:
             self.insert(tb, doc)
 
     def _get_cursor(self):
-        if not self.open:
+        if not self._open:
             self.cursor = self.connection.cursor()
-            self.open = True
+            self._open = True
         return self.cursor
 
-    def _execute(self, sql, data=None):
+    def execute(self, sql, data=None):
         cursor = self._get_cursor()
         cursor.execute(sql, data)
 
@@ -77,12 +83,12 @@ class MySQL(DataBase):
             raise ValueError("db name not allowed to be empty.")
 
         sql = f"CREATE DATABASE IF NOT EXISTS `{db_name}` DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;"
-        self._execute(sql)
+        self.execute(sql)
         print("create database: `{}` success.".format(db_name))
 
     def drop_db(self, db_name=""):
         sql = f"DROP DATABASE IF EXISTS {db_name};"
-        self._execute(sql)
+        self.execute(sql)
         print("drop database: `{}` success.".format(db_name))
 
     def create_tb(self, tb=""):
@@ -93,12 +99,12 @@ class MySQL(DataBase):
            age TINYINT UNSIGNED NULL,
            address VARCHAR(50) NULL
         )ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;"""
-        self._execute(sql)
+        self.execute(sql)
         print("create table: `{}` success.".format(tb))
 
     def drop_tb(self, tb=""):
         sql = f"DROP TABLE IF EXISTS {tb};"
-        self._execute(sql)
+        self.execute(sql)
         print("drop table: `{}` success.".format(tb))
 
     def query(self, tb, condition):
@@ -107,7 +113,7 @@ class MySQL(DataBase):
         if condition_sql:
             condition_sql = f"WHERE {condition_sql}"
         sql = f"SELECT * FROM {tb} {condition_sql};"
-        results = self._execute(sql)
+        results = self.execute(sql)
         return results
 
     def update(self, tb, doc, condition):
@@ -125,7 +131,7 @@ class MySQL(DataBase):
 
         sql = f"UPDATE `{tb}` SET {fields_sql} {condition_sql};"
         print(sql)
-        self._execute(sql, values)
+        self.execute(sql, values)
         print("update success.")
 
     def __del__(self):
@@ -136,5 +142,5 @@ class MySQL(DataBase):
     def __repr__(self):
         key = "version()"
         sql = f"SELECT {key} FROM dual;"
-        version = self._execute(sql).get(key)
+        version = self.execute(sql).get(key)
         return "MySQL:<{}> at {}.".format(version, self.connection.host_info)
