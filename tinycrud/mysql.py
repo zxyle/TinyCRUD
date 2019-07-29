@@ -93,6 +93,8 @@ class MySQL(DataBase):
         sql = f"""
         CREATE TABLE IF NOT EXISTS `{tb}`(
            id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+           create_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+           modify_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
            name VARCHAR(20) NULL,
            age TINYINT UNSIGNED NULL,
            address VARCHAR(50) NULL
