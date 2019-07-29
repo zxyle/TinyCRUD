@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # Author: Zheng <zxyful@gmail.com>
 # Date: 2019/7/25
-# Desc: 
+# Desc:
 
 import redis
 
@@ -32,6 +32,9 @@ class Redis(DataBase):
             return eval(str(result, encoding="utf-8"))
 
         return result
+
+    def update(self, tb, doc, condition):
+        pass
 
     def __repr__(self):
         version = self.r.info("Server").get("redis_version")

@@ -34,6 +34,9 @@ class Mongo(DataBase):
         post = self.db[tb]
         return [row for row in post.find(condition)]
 
+    def update(self, tb, doc, condition):
+        pass
+
     def ensure_index(self):
         pass
 
