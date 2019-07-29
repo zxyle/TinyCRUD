@@ -54,12 +54,18 @@ class MySQL(DataBase):
             self.insert(tb, doc)
 
     def _get_cursor(self):
-        if not self._open:
+        if not self._open and not self.cursor:
             self.cursor = self.connection.cursor()
             self._open = True
         return self.cursor
 
     def execute(self, sql, data=None):
+        """
+
+        :param sql: SQL statement
+        :param data:
+        :return:
+        """
         cursor = self._get_cursor()
         cursor.execute(sql, data)
 
@@ -69,14 +75,6 @@ class MySQL(DataBase):
             return rows[0]
         elif len(rows) > 1:
             return rows
-
-        try:
-            self.connection.commit()
-        except Exception as e:
-            print(e)
-            self.connection.rollback()
-        else:
-            pass
 
     def create_db(self, db_name=""):
         if not db_name:
@@ -133,8 +131,18 @@ class MySQL(DataBase):
         self.execute(sql, values)
         print("update success.")
 
+    def _commit(self):
+        try:
+            self.connection.commit()
+        except Exception as e:
+            print(e)
+            self.connection.rollback()
+        else:
+            pass
+
     def __del__(self):
         """close connection and cursor"""
+        self._commit()
         self._get_cursor().close()
         self.connection.close()
 
