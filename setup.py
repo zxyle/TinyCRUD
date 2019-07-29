@@ -18,7 +18,7 @@ with open("README.md", 'r', encoding="utf-8") as f:
 # twine upload dist/*
 setup(
     name="TinyCRUD",
-    version="0.1.4",
+    version="0.1.5",
     author="Zheng",
     author_email="zxyful@gmail.com",
     description="One API, More Database.",
