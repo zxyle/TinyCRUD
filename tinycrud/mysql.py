@@ -20,7 +20,7 @@ class MySQL(DataBase):
                                           user=self.u.user,
                                           password=self.u.password,
                                           db=self.u.db,
-                                          charset='utf8mb4',
+                                          charset=self.u.params.get('charset', 'utf8mb4'),
                                           cursorclass=pymysql.cursors.DictCursor)
         self._open = False
         self.cursor = None
