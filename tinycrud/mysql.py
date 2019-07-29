@@ -133,6 +133,11 @@ class MySQL(DataBase):
         self.execute(sql, values)
         print("update success.")
 
+    def delete(self, tb):
+        # TODO WHERE
+        sql = f"DELETE FROM {tb};"
+        self.execute(sql)
+
     def _commit(self):
         try:
             self.connection.commit()
