@@ -19,7 +19,10 @@ install:
 script:
   - pytest
 
-#deploy:
-#  provider: pypi
-#  user: "Your username"
-#  password: "Your password"
+deploy:
+  provider: pypi
+  user: "zxyle"
+  password: "RXm1IWwWGx0kAHKzZtYh/az5CmYW0Omg4zWkufEsINxAybmuI3TFNu76tums+6DK6KQfX8wVbORX2jTO80evDkCX6biTjtV9lrB8ljZjpYf/sxXnNLlY+LGiQg8GXrl30Sy1BChB5c58NLj/KZ5hFCpbL8r4jLiYB+u4RU9dn7PFCFVN
+             CvK1JwhdTEY3cm3OD+ld7V4GfyTzOi1ngST0HxWXLCPjo6usTNhS1cnGQoMyEqQKRTqWG7pSlVtaItKJCbGRcH+LuINL9n1jg0COtbFz7mdFKC232T/ctSaLHjICYrqfGoxpD76QBCiS3P2x3UQsV0+uZsbpW2Zema7mbatUFhkkxTkubbMBl3hR
+             Ne3+t7Pg+p5JyQT/Xmk8luE1l4aOijPML7ef0mt2b7quMuFdy352m7ODY//uFp8CDeAnVb+TxQt+TRC2aJaETOteqWz5cxtDBFcU5MMldr36chpzJxkFyIj0f8yAygdfZcYvJcfh3syODzSZt/qdGLpkoap8CXjNsZEBiivhqMcisk/SciMsEGOl
+             u5zbCUlU+9vl8TEHQFU/raJO4hnfEQEzQi26Rt7+h62xM+iJTKXfH6KNsyyZM4zAhFifsBx9t//a0wZjIROYcZ4GAH9g/JUmtZi4zISEIn83eRWRGWFGrcmfV11/6GpIFhB9eeRrEXA="

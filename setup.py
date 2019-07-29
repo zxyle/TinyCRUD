@@ -14,10 +14,11 @@ tests_require = [
 with open("README.md", 'r') as f:
     long_description = f.read()
 
-# python setup.py sdist upload
+# python setup.py sdist bdist_wheel
+# twine upload dist/*
 setup(
     name="TinyCRUD",
-    version="0.1.3",
+    version="0.1.4",
     author="Zheng",
     author_email="zxyful@gmail.com",
     description="One API, More Database.",
