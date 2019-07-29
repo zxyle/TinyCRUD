@@ -23,7 +23,7 @@ my.execute("SELECT `User` FROM `mysql.user`;")
 ```
 
 ## Installation
-```
+```bash
 pip install tinycrud
 ```
 

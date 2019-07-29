@@ -11,7 +11,7 @@ tests_require = [
     "pytest==5.0.1",
 ]
 
-with open("README.md", 'r') as f:
+with open("README.md", 'r', encoding="utf-8") as f:
     long_description = f.read()
 
 # python setup.py sdist bdist_wheel
