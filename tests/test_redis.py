@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Author: Zheng <me@zxyle.cn>
+# Author: Zheng <zxyful@gmail.com>
 # Date: 2019/7/26
 # Desc: 
 
