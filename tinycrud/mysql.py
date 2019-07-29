@@ -111,7 +111,7 @@ class MySQL(DataBase):
     def query(self, tb, condition):
         condition_sql = self._where(condition)
 
-        sql = f"SELECT * FROM {tb} {condition_sql};"
+        sql = f"SELECT * FROM `{tb}` {condition_sql};"
         results = self.execute(sql)
         return results
 
@@ -131,10 +131,13 @@ class MySQL(DataBase):
 
     def delete(self, tb, condition):
         condition_sql = self._where(condition)
-        sql = f"DELETE FROM {tb} {condition_sql};"
+        sql = f"DELETE FROM `{tb}` {condition_sql};"
         self.execute(sql)
 
     def _where(self, condition):
+        if not condition:
+            return ""
+
         condition_list = []
         for k, v in condition.items():
             operator, v = self._parse(v)
