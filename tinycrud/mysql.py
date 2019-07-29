@@ -4,6 +4,7 @@
 # Date: 2019/7/25
 # Desc: MySQL
 
+import re
 import pymysql
 
 from tinycrud.base import DataBase
@@ -108,9 +109,8 @@ class MySQL(DataBase):
         print("drop table: `{}` success.".format(tb))
 
     def query(self, tb, condition):
-        condition_sql = " AND ".join([f"{k}=\"{v}\"" for k, v in condition.items()])
-        if condition_sql:
-            condition_sql = f"WHERE {condition_sql}"
+        condition_sql = self._where(condition)
+
         sql = f"SELECT * FROM {tb} {condition_sql};"
         results = self.execute(sql)
         return results
@@ -123,20 +123,39 @@ class MySQL(DataBase):
             values.append(value)
 
         fields_sql = ", ".join(fields)
-        # TODO 自动获取 >= =
-        condition_sql = " AND ".join([f"{k}{v}" for k, v in condition.items()])
-        if condition_sql:
-            condition_sql = f"WHERE {condition_sql}"
 
+        condition_sql = self._where(condition)
         sql = f"UPDATE `{tb}` SET {fields_sql} {condition_sql};"
-        print(sql)
         self.execute(sql, values)
         print("update success.")
 
-    def delete(self, tb):
-        # TODO WHERE
-        sql = f"DELETE FROM {tb};"
+    def delete(self, tb, condition):
+        condition_sql = self._where(condition)
+        sql = f"DELETE FROM {tb} {condition_sql};"
         self.execute(sql)
+
+    def _where(self, condition):
+        condition_list = []
+        for k, v in condition.items():
+            operator, v = self._parse(v)
+            if isinstance(v, str):
+                condition_list.append(f'{k}{operator}"{v}"')
+            else:
+                condition_list.append(f'{k}{operator}{v}')
+
+        condition_sql = " AND ".join(condition_list)
+        return f"WHERE {condition_sql}"
+
+    @staticmethod
+    def _parse(v):
+        pattern = re.findall(r"[>=<!]=?", v)
+        if not pattern:
+            return "=", v
+        else:
+            value = v.replace(pattern[0], "")
+            if value.isnumeric():
+                value = int(value)
+            return pattern[0], value
 
     def _commit(self):
         try:
@@ -155,6 +174,6 @@ class MySQL(DataBase):
 
     def __repr__(self):
         key = "version()"
-        sql = f"SELECT {key} FROM dual;"
+        sql = f"SELECT {key};"
         version = self.execute(sql).get(key)
         return "MySQL:<{}> at {}.".format(version, self.connection.host_info)
