@@ -19,7 +19,7 @@ my = MySQL(uri)
 
 
 def test_insert():
-    table_name = "students"
+    table_name = "student"
     my.drop_tb(table_name)
     my.create_tb(table_name)
     insert_data = {"name": "zx", "age": 1, "address": "Hangzhou"}

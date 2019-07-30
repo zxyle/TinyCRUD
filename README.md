@@ -15,9 +15,9 @@ just to satisfy the most basic CRUD operations.
 from tinycrud.mysql import MySQL
 
 my = MySQL()
-my.insert(tb="cities", doc={"name": "Hangzhou"})
+my.insert(tb="student", doc={"name": "zx"})
 
-rows = my.query(tb="cities", condition={})
+rows = my.query(tb="student", condition={})
 
 # Use SQL directly
 my.execute("SELECT `User` FROM `mysql.user`;")
