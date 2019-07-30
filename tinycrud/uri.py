@@ -49,8 +49,7 @@ def unpack_url(url):
     if len(part) < 2:
         raise ValueError
 
-    base_url = url.split('?')[0]
-    params_url = url.split('?')[1]
+    base_url, params_url = url.split('?')
 
     params = params_url.split('&')
     values = dict()
