@@ -140,7 +140,7 @@ class MySQL(DataBase):
 
         condition_list = []
         for k, v in condition.items():
-            operator, v = self._parse(v)
+            operator, v = self._parse(str(v))
             if isinstance(v, str):
                 condition_list.append(f'{k}{operator}"{v}"')
             else:
