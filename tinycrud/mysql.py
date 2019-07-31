@@ -134,6 +134,15 @@ class MySQL(DataBase):
         sql = f"DELETE FROM `{tb}` {condition_sql};"
         self.execute(sql)
 
+    def group_by(self):
+        pass
+
+    def having(self):
+        pass
+
+    def limit(self):
+        pass
+
     def _where(self, condition):
         if not condition:
             return ""
