@@ -4,55 +4,19 @@
 # Date: 2019/7/25
 # Desc: 
 
-from urllib.parse import urlparse, quote, unquote
+from urllib.parse import urlparse, unquote
 
 
-def build_url(url, params):
+def parse_params(params_url):
     """
-    :argument:
-    - `url`:  string, received base_url like this: https://www.example.com
-    - `params`:  dict, received params like this: {'name': 'zx', 'age': 11}
 
-    :return string https://www.example.com/?name=zx&age=11
+    :param params_url:
+    :return:
     """
-    if not isinstance(url, str):
-        raise TypeError
-
-    if not isinstance(params, dict):
-        raise TypeError
-
-    if url[-1] != '?':
-        url += '?'
-
-    key_values = []
-    for k, v in params.items():
-        if not v:
-            continue
-        value = quote(str(v))
-        key_values.append(f"{k}={value}")
-
-    return url + "&".join(key_values)
-
-
-def unpack_url(url):
-    """
-    :argument:
-    - `url`:  string, received base_url like this:
-             https://www.example.com/?name=zx&age=11
-    :return ('https://www.example.com', {'name': 'zx', 'age': 11})
-    :rtype tuple
-    """
-    if not isinstance(url, str):
-        raise TypeError
-
-    part = url.split('?')
-    if len(part) < 2:
-        raise ValueError
-
-    base_url, params_url = url.split('?')
-
-    params = params_url.split('&')
     values = dict()
+    if not params_url:
+        return values
+    params = params_url.split('&')
     for param in params:
         key, value = param.split('=')
         if value.isnumeric():
@@ -60,8 +24,7 @@ def unpack_url(url):
         else:
             value = unquote(value)
         values.update({key: value})
-
-    return base_url, values
+    return values
 
 
 class UriParser:
@@ -96,7 +59,7 @@ class UriParser:
 
     @property
     def params(self):
-        _, param = unpack_url(self.uri)
+        param = parse_params(self.handle.query)
         return param
 
     def __repr__(self):

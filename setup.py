@@ -14,7 +14,7 @@ tests_require = [
 with open("README.md", 'r', encoding="utf-8") as f:
     long_description = f.read()
 
-# python setup.py sdist bdist_wheel
+# python setup.py sdist bdist_wheel bdist_wininst
 # twine upload dist/*
 setup(
     name="TinyCRUD",
