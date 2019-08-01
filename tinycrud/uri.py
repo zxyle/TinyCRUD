@@ -28,9 +28,9 @@ def parse_params(params_url):
 
 
 class UriParser:
+    # <scheme>://<user>:<pwd>@<host>:<port>/<path>;<params>?<query>#<frag>
     def __init__(self, uri):
-        self.uri = uri
-        self.handle = urlparse(self.uri)
+        self.handle = urlparse(uri)
 
     @property
     def scheme(self):
@@ -61,6 +61,10 @@ class UriParser:
     def params(self):
         param = parse_params(self.handle.query)
         return param
+
+    @property
+    def fragment(self):
+        return self.handle.fragment
 
     def __repr__(self):
         return "URI:"

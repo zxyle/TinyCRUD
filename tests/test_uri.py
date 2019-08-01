@@ -20,6 +20,7 @@ def test_mysql_uri():
     assert u.db == "test"
     assert u.user == "root"
     assert u.scheme == "mysql+pymysql"
+    assert u.params == {'charset': 'utf8mb4'}
 
 
 def test_mongodb_uri():
