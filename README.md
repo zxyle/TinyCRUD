@@ -17,7 +17,7 @@ from tinycrud.mysql import MySQL
 my = MySQL()
 my.insert(tb="student", doc={"name": "zx"})
 
-rows = my.query(tb="student", condition={})
+rows = my.query(tb="student", condition={"age": ">=18"})
 
 # Use SQL directly
 my.execute("SELECT `User` FROM `mysql.user`;")
