@@ -163,11 +163,11 @@ class MySQL(DataBase):
         pattern = re.findall(r"[>=<!]=?", v)
         if not pattern:
             return "=", v
-        else:
-            value = v.replace(pattern[0], "")
-            if value.isnumeric():
-                value = int(value)
-            return pattern[0], value
+
+        value = v.replace(pattern[0], "")
+        if value.isnumeric():
+            value = int(value)
+        return pattern[0], value
 
     def _commit(self):
         try:
