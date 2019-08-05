@@ -6,7 +6,7 @@
 
 
 class DataBase:
-    def query(self, tb, condition):
+    def query(self, tb, condition=None):
         raise NotImplementedError
 
     def insert(self, tb, doc):

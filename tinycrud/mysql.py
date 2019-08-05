@@ -5,6 +5,7 @@
 # Desc: MySQL
 
 import re
+
 import pymysql
 
 from tinycrud.base import DataBase
@@ -108,7 +109,9 @@ class MySQL(DataBase):
         self.execute(sql)
         print("drop table: `{}` success.".format(tb))
 
-    def query(self, tb, condition):
+    def query(self, tb, condition=None):
+        if condition is None:
+            condition = {}
         condition_sql = self._where(condition)
 
         sql = f"SELECT * FROM `{tb}` {condition_sql};"
