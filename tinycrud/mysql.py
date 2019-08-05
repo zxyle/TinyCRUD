@@ -110,8 +110,7 @@ class MySQL(DataBase):
         print("drop table: `{}` success.".format(tb))
 
     def query(self, tb, condition=None):
-        if condition is None:
-            condition = {}
+        condition = condition or {}
         condition_sql = self._where(condition)
 
         sql = f"SELECT * FROM `{tb}` {condition_sql};"

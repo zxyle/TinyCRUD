@@ -14,8 +14,10 @@ tests_require = [
 with open("README.md", 'r', encoding="utf-8") as f:
     long_description = f.read()
 
-# python setup.py sdist bdist_wheel bdist_wininst
+# distribution:
+# python setup.py sdist bdist_wheel
 # twine upload dist/*
+
 setup(
     name="TinyCRUD",
     version="0.1.6",
@@ -39,7 +41,7 @@ setup(
         "Topic :: Software Development :: Libraries :: Python Modules",
         "License :: OSI Approved :: MIT License",
         "Natural Language :: English",
-        "Programming Language :: Python",
+        # "Programming Language :: Python",
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
