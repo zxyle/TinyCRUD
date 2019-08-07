@@ -11,8 +11,8 @@ jobs:
       - image: circleci/python:3.7
       - image: circleci/python:3.6
       - image: circleci/mysql:5.7
-          environment:
-            MYSQL_ROOT_PASSWORD: 123456
+        environment:
+          MYSQL_ROOT_PASSWORD: 123456
 
       - image: circleci/redis:4.0
 
