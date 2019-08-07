@@ -190,7 +190,7 @@ class MySQL(DataBase):
             value = int(value)
         return pattern[0], value
 
-    def _commit(self):
+    def commit(self):
         try:
             self.connection.commit()
         except Exception as e:
@@ -205,7 +205,7 @@ class MySQL(DataBase):
 
     def __del__(self):
         """close connection and cursor"""
-        self._commit()
+        self.commit()
         self._get_cursor().close()
         self.connection.close()
 
