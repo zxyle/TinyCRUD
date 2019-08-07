@@ -111,14 +111,21 @@ class MySQL(DataBase):
 
     def query(self, tb, condition=None):
         condition = condition or {}
-        condition_sql = self._where(condition)
+        condition_sql, values = self._where(condition)
 
+        # TODO replace *
         sql = f"SELECT * FROM `{tb}` {condition_sql};"
-        results = self.execute(sql)
+        results = self.execute(sql, values)
         return results
 
     def update(self, tb, doc, condition):
-        # build sql
+        """
+
+        :param tb:
+        :param doc: {}
+        :param condition: {}
+        :return:
+        """
         fields, values = [], []
         for field, value in doc.items():
             fields.append(f"`{field}`=%s")
@@ -126,9 +133,9 @@ class MySQL(DataBase):
 
         fields_sql = ", ".join(fields)
 
-        condition_sql = self._where(condition)
+        condition_sql, v = self._where(condition)
         sql = f"UPDATE `{tb}` SET {fields_sql} {condition_sql};"
-        self.execute(sql, values)
+        self.execute(sql, values + v)
         print("update success.")
 
     def delete(self, tb, condition):
@@ -146,19 +153,19 @@ class MySQL(DataBase):
         pass
 
     def _where(self, condition):
+        values = []
         if not condition:
-            return ""
+            return "", values
 
         condition_list = []
+
         for k, v in condition.items():
             operator, v = self._parse(str(v))
-            if isinstance(v, str):
-                condition_list.append(f'{k}{operator}"{v}"')
-            else:
-                condition_list.append(f'{k}{operator}{v}')
+            values.append(v)
+            condition_list.append(f'{k}{operator}%s')
 
         condition_sql = " AND ".join(condition_list)
-        return f"WHERE {condition_sql}"
+        return f"WHERE {condition_sql}", values
 
     @staticmethod
     def _parse(v):
