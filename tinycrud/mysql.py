@@ -44,7 +44,7 @@ class MySQL(DataBase):
         fields_sql = ", ".join(fields)
         values_sql = ", ".join(["%s" for _ in range(len(values))])
         sql = f"INSERT INTO `{tb}` ({fields_sql}) VALUES ({values_sql});"
-        self.execute(sql, values)
+        return self.execute(sql, values)
 
     def insert_many(self, tb, doc_list):
         """
@@ -79,6 +79,8 @@ class MySQL(DataBase):
             return rows[0]
         elif len(rows) > 1:
             return rows
+        elif len(rows) == 0:
+            return cursor.lastrowid
 
     def create_db(self, db_name=""):
         """Create Database operation"""
