@@ -16,13 +16,13 @@ from tinycrud.uri import UriParser
 class MySQL(DataBase):
     def __init__(self, uri=None):
         self.uri = uri or DEFAULT_MYSQL_URI
-        self.u = UriParser(self.uri)
-        self.connection = pymysql.connect(host=self.u.host,
-                                          port=self.u.port,
-                                          user=self.u.user,
-                                          password=self.u.password,
-                                          db=self.u.db,
-                                          charset=self.u.params.get('charset', 'utf8mb4'),
+        u = UriParser(self.uri)
+        self.connection = pymysql.connect(host=u.host,
+                                          port=u.port,
+                                          user=u.user,
+                                          password=u.password,
+                                          db=u.db,
+                                          charset=u.params.get('charset', 'utf8mb4'),
                                           cursorclass=pymysql.cursors.DictCursor)
         self._open = False
         self.cursor = None

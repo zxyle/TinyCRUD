@@ -13,18 +13,19 @@ def parse_params(params_url):
     :param params_url:
     :return:
     """
-    values = dict()
+    params = dict()
     if not params_url:
-        return values
-    params = params_url.split('&')
-    for param in params:
-        key, value = param.split('=')
-        if value.isnumeric():
-            value = int(value)
+        return params
+
+    items = params_url.split('&')
+    for param in items:
+        k, v = param.split('=')
+        if v.isnumeric():
+            v = int(v)
         else:
-            value = unquote(value)
-        values.update({key: value})
-    return values
+            v = unquote(v)
+        params.update({k: v})
+    return params
 
 
 class UriParser:
@@ -37,14 +38,6 @@ class UriParser:
         return self.handle.scheme
 
     @property
-    def host(self):
-        return self.handle.hostname
-
-    @property
-    def port(self):
-        return self.handle.port
-
-    @property
     def user(self):
         return self.handle.username
 
@@ -53,18 +46,25 @@ class UriParser:
         return self.handle.password
 
     @property
+    def host(self):
+        return self.handle.hostname
+
+    @property
+    def port(self):
+        return self.handle.port
+
+    @property
     def db(self):
         path = self.handle.path
         return path.replace("/", "")
 
     @property
     def params(self):
-        param = parse_params(self.handle.query)
-        return param
+        return parse_params(self.handle.query)
 
     @property
     def fragment(self):
         return self.handle.fragment
 
     def __repr__(self):
-        return "URI:"
+        return "URI:{}:{}".format(self.host, self.port)
