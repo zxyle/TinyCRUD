@@ -14,10 +14,9 @@ from tinycrud.uri import UriParser
 class Redis(DataBase):
     def __init__(self, uri=None):
         self.uri = uri or DEFAULT_REDIS_URI
-        self.u = UriParser(self.uri)
+        u = UriParser(self.uri)
 
-        pool = redis.ConnectionPool(host=self.u.host, port=self.u.port, db=self.u.db,
-                                    password=self.u.password)
+        pool = redis.ConnectionPool(host=u.host, port=u.port, db=u.db, password=u.password)
         self.r = redis.Redis(connection_pool=pool)
 
     def test(self):
@@ -26,7 +25,7 @@ class Redis(DataBase):
     def insert(self, tb, doc):
         self.r.set(tb, str(doc))
 
-    def query(self, tb, condition):
+    def query(self, tb, condition=None):
         result = self.r.get(tb)
         if isinstance(result, bytes):
             return eval(str(result, encoding="utf-8"))

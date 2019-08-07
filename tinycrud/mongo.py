@@ -17,9 +17,9 @@ class Mongo(DataBase):
     def __init__(self, uri=None):
         self.uri = uri or DEFAULT_MONGODB_URI
         self.tz = pytz.timezone('Asia/Shanghai')
-        self.u = UriParser(self.uri)
+        u = UriParser(self.uri)
         client = pymongo.MongoClient(self.uri)
-        self.db = client[self.u.db]
+        self.db = client[u.db]
 
     def insert(self, tb, doc):
         post = self.db[tb]
@@ -30,7 +30,7 @@ class Mongo(DataBase):
         else:
             print("write success.")
 
-    def query(self, tb, condition):
+    def query(self, tb, condition=None):
         post = self.db[tb]
         return [row for row in post.find(condition)]
 
