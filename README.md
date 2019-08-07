@@ -12,7 +12,7 @@ just to satisfy the most basic CRUD operations.
 
 ## Quick Start
 ```python
-from tinycrud.mysql import MySQL
+from tinycrud.databases import MySQL, Mongo, Redis
 
 my = MySQL()
 my.insert(tb="student", doc={"name": "zx"})
