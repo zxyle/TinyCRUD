@@ -147,9 +147,9 @@ class MySQL(DataBase):
 
     def delete(self, tb, condition):
         """Delete records operation"""
-        condition_sql = self._where(condition)
+        condition_sql, values = self._where(condition)
         sql = f"DELETE FROM `{tb}` {condition_sql};"
-        self.execute(sql)
+        self.execute(sql, values)
 
     def group_by(self):
         pass
