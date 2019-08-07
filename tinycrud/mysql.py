@@ -147,11 +147,13 @@ class MySQL(DataBase):
         self.execute(sql, values + v)
         print("update success.")
 
-    def delete(self, tb, condition):
+    def delete(self, tb, condition=None):
         """Delete records operation"""
+        condition = condition or {}
         condition_sql, values = self._where(condition)
         sql = f"DELETE FROM `{tb}` {condition_sql};"
         self.execute(sql, values)
+        print("delete success.")
 
     def group_by(self):
         pass
