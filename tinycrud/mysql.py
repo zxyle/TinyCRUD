@@ -29,7 +29,7 @@ class MySQL(DataBase):
 
     def insert(self, tb, doc):
         """
-
+        Insert Record operation
         :param tb: mysql table name
         :param doc: {"name": "tinycrud"}
         :return:
@@ -47,7 +47,7 @@ class MySQL(DataBase):
 
     def insert_many(self, tb, doc_list):
         """
-
+        Insert Records operation
         :param tb: mysql table name
         :param doc_list: [{}, {}, ...]
         :return:
@@ -63,7 +63,7 @@ class MySQL(DataBase):
 
     def execute(self, sql, data=None):
         """
-
+        execute sql operation
         :param sql: SQL statement
         :param data:
         :return:
@@ -79,6 +79,7 @@ class MySQL(DataBase):
             return rows
 
     def create_db(self, db_name=""):
+        """Create Database operation"""
         if not db_name:
             raise ValueError("db name not allowed to be empty.")
 
@@ -87,11 +88,13 @@ class MySQL(DataBase):
         print("create database: `{}` success.".format(db_name))
 
     def drop_db(self, db_name=""):
+        """Drop database operation"""
         sql = f"DROP DATABASE IF EXISTS {db_name};"
         self.execute(sql)
         print("drop database: `{}` success.".format(db_name))
 
     def create_tb(self, tb=""):
+        """Create table operation"""
         sql = f"""
         CREATE TABLE IF NOT EXISTS `{tb}`(
            id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -105,11 +108,13 @@ class MySQL(DataBase):
         print("create table: `{}` success.".format(tb))
 
     def drop_tb(self, tb=""):
+        """Drop table operation"""
         sql = f"DROP TABLE IF EXISTS {tb};"
         self.execute(sql)
         print("drop table: `{}` success.".format(tb))
 
     def query(self, tb, condition=None):
+        """Select records operation"""
         condition = condition or {}
         condition_sql, values = self._where(condition)
 
@@ -120,7 +125,7 @@ class MySQL(DataBase):
 
     def update(self, tb, doc, condition):
         """
-
+        Update records operation
         :param tb:
         :param doc: {}
         :param condition: {}
@@ -139,6 +144,7 @@ class MySQL(DataBase):
         print("update success.")
 
     def delete(self, tb, condition):
+        """Delete records operation"""
         condition_sql = self._where(condition)
         sql = f"DELETE FROM `{tb}` {condition_sql};"
         self.execute(sql)
@@ -153,6 +159,7 @@ class MySQL(DataBase):
         pass
 
     def _where(self, condition):
+        """where statement parsing"""
         values = []
         if not condition:
             return "", values
@@ -169,6 +176,7 @@ class MySQL(DataBase):
 
     @staticmethod
     def _parse(v):
+        """parse where condition parameter"""
         pattern = re.findall(r"[>=<!]=?", v)
         if not pattern:
             return "=", v
