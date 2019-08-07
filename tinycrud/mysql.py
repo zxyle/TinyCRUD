@@ -14,7 +14,7 @@ from tinycrud.uri import UriParser
 
 
 class MySQL(DataBase):
-    def __init__(self, uri=None):
+    def __init__(self, uri=None, debug=False):
         self.uri = uri or DEFAULT_MYSQL_URI
         u = UriParser(self.uri)
         self.connection = pymysql.connect(host=u.host,
@@ -26,6 +26,7 @@ class MySQL(DataBase):
                                           cursorclass=pymysql.cursors.DictCursor)
         self._open = False
         self.cursor = None
+        self._debug = debug
 
     def insert(self, tb, doc):
         """
@@ -68,6 +69,7 @@ class MySQL(DataBase):
         :param data:
         :return:
         """
+        self._debug_info(sql, data)
         cursor = self._get_cursor()
         cursor.execute(sql, data)
 
@@ -194,6 +196,10 @@ class MySQL(DataBase):
             self.connection.rollback()
         else:
             pass
+
+    def _debug_info(self, *args):
+        if self._debug:
+            print(args)
 
     def __del__(self):
         """close connection and cursor"""
