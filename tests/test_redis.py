@@ -6,7 +6,7 @@
 
 
 from tinycrud.config import DEFAULT_REDIS_URI
-from tinycrud.redisHandle import Redis
+from tinycrud.databases import Redis
 
 r = Redis(DEFAULT_REDIS_URI)
 
