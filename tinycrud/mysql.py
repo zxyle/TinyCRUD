@@ -57,6 +57,7 @@ class MySQL(DataBase):
             self.insert(tb, doc)
 
     def _get_cursor(self):
+        """return cursor object"""
         if not self._open and not self.cursor:
             self.cursor = self.connection.cursor()
             self._open = True
@@ -89,13 +90,13 @@ class MySQL(DataBase):
 
         sql = f"CREATE DATABASE IF NOT EXISTS `{db_name}` DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;"
         self.execute(sql)
-        print("create database: `{}` success.".format(db_name))
+        self._debug_info("create database: `{}` success.".format(db_name))
 
     def drop_db(self, db_name=""):
         """Drop database operation"""
         sql = f"DROP DATABASE IF EXISTS {db_name};"
         self.execute(sql)
-        print("drop database: `{}` success.".format(db_name))
+        self._debug_info("drop database: `{}` success.".format(db_name))
 
     def create_tb(self, tb=""):
         """Create table operation"""
@@ -109,13 +110,13 @@ class MySQL(DataBase):
            address VARCHAR(50) NULL
         )ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;"""
         self.execute(sql)
-        print("create table: `{}` success.".format(tb))
+        self._debug_info("create table: `{}` success.".format(tb))
 
     def drop_tb(self, tb=""):
         """Drop table operation"""
         sql = f"DROP TABLE IF EXISTS {tb};"
         self.execute(sql)
-        print("drop table: `{}` success.".format(tb))
+        self._debug_info("drop table: `{}` success.".format(tb))
 
     def query(self, tb, condition=None):
         """Select records operation"""
@@ -145,7 +146,7 @@ class MySQL(DataBase):
         condition_sql, v = self._where(condition)
         sql = f"UPDATE `{tb}` SET {fields_sql} {condition_sql};"
         self.execute(sql, values + v)
-        print("update success.")
+        self._debug_info("update success.")
 
     def delete(self, tb, condition=None):
         """Delete records operation"""
@@ -153,7 +154,7 @@ class MySQL(DataBase):
         condition_sql, values = self._where(condition)
         sql = f"DELETE FROM `{tb}` {condition_sql};"
         self.execute(sql, values)
-        print("delete success.")
+        self._debug_info("delete success.")
 
     def group_by(self):
         pass
@@ -196,10 +197,10 @@ class MySQL(DataBase):
         try:
             self.connection.commit()
         except Exception as e:
-            print(e)
+            self._debug_info(e)
             self.connection.rollback()
         else:
-            pass
+            self._debug_info("commit success.")
 
     def _debug_info(self, *args):
         if self._debug:
