@@ -22,7 +22,7 @@ with open("README.md", 'r', encoding="utf-8") as f:
 
 setup(
     name="TinyCRUD",
-    version="0.1.7",
+    version="0.1.8",
     author="Zheng",
     author_email="zxyful@gmail.com",
     description="One API, More Database.",
