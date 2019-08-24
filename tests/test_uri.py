@@ -9,7 +9,7 @@ from tinycrud.config import DEFAULT_REDIS_URI, DEFAULT_MONGODB_URI, DEFAULT_MYSQ
 from tinycrud.uri import UriParser
 
 
-LOCALHOST = ("localhost", "127.0.0.1")
+LOCALHOST = ("localhost", "127.0.0.1", "LOCALHOST")
 
 
 def test_mysql_uri():

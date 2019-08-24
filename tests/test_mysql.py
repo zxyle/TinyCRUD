@@ -16,34 +16,41 @@ if ENV == "CI":
 else:
     uri = DEFAULT_MYSQL_URI
 my = MySQL(uri, debug=True)
-table_name = "student"
-insert_data = {"name": "zx", "age": 1, "address": "Hangzhou"}
+test_table = "student"
+test_data = {"name": "zx", "age": 1, "address": "Hangzhou"}
 
 
 def test_insert():
-    my.drop_tb(table_name)
-    my.create_tb(table_name)
-    assert my.insert(table_name, insert_data) is not None
+    my.drop_tb(test_table)
+    my.create_tb(test_table)
+    assert my.insert(test_table, test_data) is not None
 
 
 def test_query():
-    rows = my.query(table_name)
-    assert rows.get("name") == insert_data.get("name") and rows.get("address") == insert_data.get("address")
+    rows = my.query(test_table)
+    rows.pop("id")
+    rows.pop("create_time")
+    rows.pop("modify_time")
+    assert rows == test_data
 
 
 def test_update():
     update_data = {"age": 20}
     condition = {}
-    my.update(table_name, update_data, condition)
+    my.update(test_table, update_data, condition)
     my.commit()
 
-    rows = my.query(table_name)
+    rows = my.query(test_table)
     assert rows.get("age") == update_data.get("age")
 
 
 def test_delete():
     condition = {}
-    my.delete(table_name, condition)
+    my.delete(test_table, condition)
 
-    rows = my.query(table_name)
+    rows = my.query(test_table)
     assert rows is None
+
+
+def test_insert_many():
+    pass
