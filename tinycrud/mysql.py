@@ -206,6 +206,10 @@ class MySQL(DataBase):
         sql = "create trigger tri before update on test.student for each row set NEW.modify_time=CURRENT_TIMESTAMP;"
         self.execute(sql)
 
+    def create_view(self, name, sql):
+        sql = f"create view {name} as {sql};"
+        self.execute(sql)
+
     def _debug_info(self, *args):
         if self._debug:
             print(args)
