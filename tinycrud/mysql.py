@@ -202,6 +202,10 @@ class MySQL(DataBase):
         else:
             self._debug_info("commit success.")
 
+    def create_trigger(self):
+        sql = "create trigger tri before update on test.student for each row set NEW.modify_time=CURRENT_TIMESTAMP;"
+        self.execute(sql)
+
     def _debug_info(self, *args):
         if self._debug:
             print(args)
