@@ -17,7 +17,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'TinyCRUD'
+project = 'crudlib'
 copyright = '2019, Zheng'
 author = 'Zheng'
 

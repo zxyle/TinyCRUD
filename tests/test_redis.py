@@ -5,8 +5,8 @@
 # Desc: 
 
 
-from tinycrud.config import DEFAULT_REDIS_URI
-from tinycrud.databases import Redis
+from crudlib.config import DEFAULT_REDIS_URI
+from crudlib.databases import Redis
 
 r = Redis(DEFAULT_REDIS_URI)
 

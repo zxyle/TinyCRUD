@@ -8,9 +8,9 @@ import pymongo
 import pytz
 from pymongo.errors import DuplicateKeyError
 
-from tinycrud.base import DataBase
-from tinycrud.config import DEFAULT_MONGODB_URI
-from tinycrud.uri import UriParser
+from crudlib.base import DataBase
+from crudlib.config import DEFAULT_MONGODB_URI
+from crudlib.uri import UriParser
 
 
 class Mongo(DataBase):

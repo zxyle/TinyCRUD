@@ -1,4 +1,4 @@
-# https://pypi.org/project/TinyCRUD/
+# https://pypi.org/project/crudlib/
 
 from setuptools import setup, find_packages
 
@@ -21,7 +21,7 @@ with open("README.md", 'r', encoding="utf-8") as f:
 # twine upload dist/*
 
 setup(
-    name="TinyCRUD",
+    name="crudlib",
     version="0.1.8",
     author="Zheng",
     author_email="zxyful@gmail.com",
@@ -29,7 +29,7 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     license="MIT",
-    url="https://github.com/zxyle/TinyCRUD",
+    url="https://github.com/zxyle/crudlib",
     packages=find_packages(),
     install_requires=requires,
     tests_require=tests_require,

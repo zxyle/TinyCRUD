@@ -8,9 +8,9 @@ import re
 
 import pymysql
 
-from tinycrud.base import DataBase
-from tinycrud.config import DEFAULT_MYSQL_URI
-from tinycrud.uri import UriParser
+from crudlib.base import DataBase
+from crudlib.config import DEFAULT_MYSQL_URI
+from crudlib.uri import UriParser
 
 
 class MySQL(DataBase):
@@ -32,7 +32,7 @@ class MySQL(DataBase):
         """
         Insert Record operation
         :param tb: mysql table name
-        :param doc: {"name": "tinycrud"}
+        :param doc: {"name": "crudlib"}
         :return:
         """
         # build sql

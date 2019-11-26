@@ -5,7 +5,7 @@
 # Desc: 
 
 
-from tinycrud.mysql import MySQL
+from crudlib.mysql import MySQL
 
 
 class MariaDB(MySQL):

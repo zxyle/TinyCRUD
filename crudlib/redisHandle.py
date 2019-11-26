@@ -6,9 +6,9 @@
 
 import redis
 
-from tinycrud.base import DataBase
-from tinycrud.config import DEFAULT_REDIS_URI
-from tinycrud.uri import UriParser
+from crudlib.base import DataBase
+from crudlib.config import DEFAULT_REDIS_URI
+from crudlib.uri import UriParser
 
 
 class Redis(DataBase):

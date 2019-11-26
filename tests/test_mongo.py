@@ -5,8 +5,8 @@
 # Desc: 
 
 
-# from tinycrud.config import DEFAULT_MONGODB_URI
-# from tinycrud.databases import Mongo
+# from crudlib.config import DEFAULT_MONGODB_URI
+# from crudlib.databases import Mongo
 #
 #
 # def test_mongo():

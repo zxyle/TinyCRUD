@@ -1,4 +1,4 @@
-# https://travis-ci.org/zxyle/TinyCRUD
+# https://travis-ci.org/zxyle/crudlib
 
 dist: xenial
 language: python

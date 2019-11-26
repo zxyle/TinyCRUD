@@ -6,7 +6,7 @@
 
 import sqlite3
 
-from tinycrud.mysql import MySQL
+from crudlib.mysql import MySQL
 
 
 class SQLite(MySQL):

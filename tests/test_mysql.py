@@ -6,8 +6,8 @@
 
 import os
 
-from tinycrud.config import DEFAULT_MYSQL_URI
-from tinycrud.databases import MySQL
+from crudlib.config import DEFAULT_MYSQL_URI
+from crudlib.databases import MySQL
 
 ENV = os.getenv("ENV")
 if ENV == "CI":

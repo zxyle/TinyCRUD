@@ -5,8 +5,8 @@
 # Desc: 
 
 
-from tinycrud.config import DEFAULT_REDIS_URI, DEFAULT_MONGODB_URI, DEFAULT_MYSQL_URI
-from tinycrud.uri import UriParser
+from crudlib.config import DEFAULT_REDIS_URI, DEFAULT_MONGODB_URI, DEFAULT_MYSQL_URI
+from crudlib.uri import UriParser
 
 
 LOCALHOST = ("localhost", "127.0.0.1", "LOCALHOST")
