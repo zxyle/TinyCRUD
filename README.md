@@ -6,8 +6,8 @@
 [![GitHub license](https://img.shields.io/github/license/zxyle/crudlib.svg)](https://github.com/zxyle/crudlib/blob/master/LICENSE)
 [![Documentation Status](https://readthedocs.org/projects/crudlib/badge/?version=latest)](https://crudlib.readthedocs.io/en/latest/?badge=latest)
 
-Implement a set of interfaces to operate databases such as MySQL, MongoDB, and Redis.
-His goal is not to build a powerful ORM framework like [SQLAlchemy](https://github.com/zzzeek/sqlalchemy),
+Implement a set of interfaces to operate databases such as MySQL, MariaDB, MongoDB, and Redis.
+His goal is not to build a powerful ORM framework like SQLAlchemy,
 just to satisfy the most basic CRUD operations.
 
 ## Quick Start
@@ -15,7 +15,7 @@ just to satisfy the most basic CRUD operations.
 from crudlib.databases import MySQL, Mongo, Redis
 
 my = MySQL()
-my.insert(tb="student", doc={"name": "zx"})
+my.insert(tb="student", doc={"name": "zxyle"})
 
 rows = my.query(tb="student", condition={"age": ">=18"})
 
@@ -25,7 +25,7 @@ my.execute("SELECT User FROM mysql.user;")
 
 ## Installation
 ```bash
-pip install tinycrud
+pip install crudlib
 ```
 
 ## Features
