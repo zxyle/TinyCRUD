@@ -1,22 +1,16 @@
 # https://pypi.org/project/crudlib/
 
-from setuptools import setup, find_packages
+from os.path import abspath, dirname, join
 
-requires = [
-    "pymongo==3.8.0",
-    "pymysql==0.9.3",
-    "pytz==2019.1",
-    "redis==3.2.1",
-]
+from setuptools import find_packages, setup
 
-tests_require = [
-    "pytest==5.0.1",
-]
+install_reqs = [req.strip() for req in open(abspath(join(dirname(__file__), 'requirements.txt')))]
 
 with open("README.md", 'r', encoding="utf-8") as f:
     long_description = f.read()
 
 # distribution:
+# pip install wheel twine setuptools
 # python setup.py sdist bdist_wheel
 # twine upload dist/*
 
@@ -31,8 +25,8 @@ setup(
     license="MIT",
     url="https://github.com/zxyle/crudlib",
     packages=find_packages(),
-    install_requires=requires,
-    tests_require=tests_require,
+    install_requires=install_reqs,
+    # tests_require=tests_require,
     classifiers=[
         "Environment :: Web Environment",
         "Intended Audience :: Developers",
