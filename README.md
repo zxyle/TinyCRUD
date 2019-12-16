@@ -1,7 +1,7 @@
 # crudlib
 *One API, More Database.*
 
-[![Build Status](https://travis-ci.org/zxyle/crudlib.svg?branch=master)](https://travis-ci.org/zxyle/crudlib)
+[![Build Status](https://github.com/zxyle/crudlib/workflows/Python%20package/badge.svg)](https://github.com/zxyle/crudlib/actions?query=workflow%3A%22Python+package%22)
 [![pypi version](https://img.shields.io/pypi/v/crudlib.svg)](https://pypi.org/project/crudlib/)
 [![GitHub license](https://img.shields.io/github/license/zxyle/crudlib.svg)](https://github.com/zxyle/crudlib/blob/master/LICENSE)
 [![Documentation Status](https://readthedocs.org/projects/crudlib/badge/?version=latest)](https://crudlib.readthedocs.io/en/latest/?badge=latest)
