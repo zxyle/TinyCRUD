@@ -5,7 +5,7 @@
 # Desc: 
 
 
-from crudlib.config import DEFAULT_REDIS_URI, DEFAULT_MONGODB_URI, DEFAULT_MYSQL_URI
+from crudlib.config import DEFAULT_MONGODB_URI, DEFAULT_MYSQL_URI
 from crudlib.uri import UriParser
 
 

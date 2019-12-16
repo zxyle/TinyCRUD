@@ -10,4 +10,4 @@ from crudlib.mysql import MySQL
 from crudlib.sqlite import SQLite
 from crudlib.mariadb import MariaDB
 
-# __all__ = (MySQL, Redis, Mongo)
+# __all__ = (MySQL, Mongo)
