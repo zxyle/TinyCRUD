@@ -6,13 +6,13 @@
 [![GitHub license](https://img.shields.io/github/license/zxyle/crudlib.svg)](https://github.com/zxyle/crudlib/blob/master/LICENSE)
 [![Documentation Status](https://readthedocs.org/projects/crudlib/badge/?version=latest)](https://crudlib.readthedocs.io/en/latest/?badge=latest)
 
-Implement a set of interfaces to operate databases such as MySQL, MariaDB, MongoDB, and Redis.
+Implement a set of interfaces to operate databases such as MySQL, MariaDB and MongoDB.
 His goal is not to build a powerful ORM framework like SQLAlchemy,
 just to satisfy the most basic CRUD operations.
 
 ## Quick Start
 ```python
-from crudlib.databases import MySQL, Mongo, Redis
+from crudlib.databases import MySQL, Mongo
 
 my = MySQL()
 my.insert(tb="student", doc={"name": "zxyle"})
@@ -31,7 +31,6 @@ pip install crudlib
 ## Features
 * MySQL
 * MongoDB
-* Redis
 
 
 ## License
