@@ -30,12 +30,3 @@ def test_mongodb_uri():
     assert u.db == "test"
     assert u.user is None
     assert u.scheme == "mongodb"
-
-
-def test_redis_uri():
-    u = UriParser(DEFAULT_REDIS_URI)
-    assert u.host in LOCALHOST
-    assert u.password is None
-    assert int(u.db) == 0
-    assert u.user is None
-    assert u.scheme == "redis"

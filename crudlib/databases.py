@@ -7,7 +7,6 @@
 
 from crudlib.mongo import Mongo
 from crudlib.mysql import MySQL
-from crudlib.redisHandle import Redis
 from crudlib.sqlite import SQLite
 from crudlib.mariadb import MariaDB
 
