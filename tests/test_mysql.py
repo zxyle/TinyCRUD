@@ -14,7 +14,8 @@ if ENV == "CI":
     # No password by default in Travis CI ENV
     uri = "mysql+pymysql://root@localhost:3306/test?charset=utf8mb4"
 else:
-    uri = DEFAULT_MYSQL_URI
+    # uri = DEFAULT_MYSQL_URI
+    uri = "mysql+pymysql://root@localhost:33060/test?charset=utf8mb4"
 my = MySQL(uri, debug=True)
 test_table = "student"
 test_data = {"name": "zx", "age": 1, "address": "Hangzhou"}
