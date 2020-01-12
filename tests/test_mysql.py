@@ -4,21 +4,12 @@
 # Date: 2019/7/26
 # Desc: 
 
-import os
-
-from crudlib.config import DEFAULT_MYSQL_URI
 from crudlib.databases import MySQL
 
-ENV = os.getenv("ENV")
-if ENV == "CI":
-    # No password by default in Travis CI ENV
-    uri = "mysql+pymysql://root@localhost:3306/test?charset=utf8mb4"
-else:
-    # uri = DEFAULT_MYSQL_URI
-    uri = "mysql+pymysql://root:123456@localhost:33060/test?charset=utf8mb4"
+uri = "mysql+pymysql://root:123456@localhost:33060/test?charset=utf8mb4"
 my = MySQL(uri, debug=True)
-test_table = "student"
-test_data = {"name": "zx", "age": 1, "address": "Hangzhou"}
+test_table = "developers"
+test_data = {"name": "zxyle", "age": 25, "address": "Hangzhou"}
 
 
 def test_insert():
