@@ -5,7 +5,7 @@ on: [push]
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: [windows-latest, ubuntu-latest, macos-latest]
     strategy:
       max-parallel: 3
       matrix:
@@ -13,6 +13,31 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
+
+    - uses: actions/cache@v1
+      if: startsWith(runner.os, 'Linux')
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+
+    - uses: actions/cache@v1
+      if: startsWith(runner.os, 'macOS')
+      with:
+        path: ~/Library/Caches/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+
+    - uses: actions/cache@v1
+      if: startsWith(runner.os, 'Windows')
+      with:
+        path: ~\AppData\Local\pip\Cache
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v1
       with:
@@ -20,8 +45,6 @@ jobs:
 
     - name: Shutdown Ubuntu MySQL (SUDO)
       run: sudo service mysql stop # Shutdown the Default MySQL, "sudo" is necessary, please not remove it
-
-
 
     - name: Set up MySQL
       uses: mirromutth/mysql-action@v1.1
