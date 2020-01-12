@@ -46,3 +46,9 @@ def test_delete():
 
 def test_insert_many():
     pass
+
+
+def test_rollback():
+    my.insert(test_table, test_data)
+    my.rollback()
+    assert my.query(test_table) is None
