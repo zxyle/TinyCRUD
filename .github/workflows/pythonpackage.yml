@@ -47,7 +47,7 @@ jobs:
       run: |
         pwd
         ls -lh
-        mysql –uroot –p root ./tests/init.sql
+        mysql –uroot –p root -Dtest<./tests/init.sql
 
     - name: Install dependencies
       run: |
