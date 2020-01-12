@@ -4,21 +4,14 @@
 # Date: 2019/7/26
 # Desc: 
 
-import os
-
-from crudlib.config import DEFAULT_MYSQL_URI
 from crudlib.databases import MySQL
 
-ENV = os.getenv("ENV")
-if ENV == "CI":
-    # No password by default in Travis CI ENV
-    uri = "mysql+pymysql://root@localhost:3306/test?charset=utf8mb4"
-else:
-    # uri = DEFAULT_MYSQL_URI
-    uri = "mysql+pymysql://root:123456@localhost:33060/test?charset=utf8mb4"
+uri = "mysql+pymysql://root:root@localhost:3306/mysql?charset=utf8mb4"
 my = MySQL(uri, debug=True)
-test_table = "student"
-test_data = {"name": "zx", "age": 1, "address": "Hangzhou"}
+my.create_db("test")
+my.connection.db = "test"
+test_table = "developers"
+test_data = {"name": "zxyle", "age": 25, "address": "Hangzhou"}
 
 
 def test_insert():
@@ -55,3 +48,9 @@ def test_delete():
 
 def test_insert_many():
     pass
+
+
+def test_rollback():
+    my.insert(test_table, {"name": "zheng"})
+    my.rollback()
+    assert my.query(test_table, {"name": "zheng"}) is None
