@@ -43,12 +43,6 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
 
-    - name: Create Database
-      run: |
-        pwd
-        ls -lh
-        mysql –uroot –p root -Dtest<./tests/init.sql
-
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip

@@ -6,8 +6,10 @@
 
 from crudlib.databases import MySQL
 
-uri = "mysql+pymysql://root:123456@localhost:33060/test?charset=utf8mb4"
+uri = "mysql+pymysql://root:root@localhost:3306/mysql?charset=utf8mb4"
 my = MySQL(uri, debug=True)
+my.create_db("test")
+my.connection.db = "test"
 test_table = "developers"
 test_data = {"name": "zxyle", "age": 25, "address": "Hangzhou"}
 
