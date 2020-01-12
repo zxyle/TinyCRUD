@@ -49,6 +49,6 @@ def test_insert_many():
 
 
 def test_rollback():
-    my.insert(test_table, test_data)
+    my.insert(test_table, {"name": "zheng"})
     my.rollback()
-    assert my.query(test_table) is None
+    assert my.query(test_table, {"name": "zheng"}) is None
