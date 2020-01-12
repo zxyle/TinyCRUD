@@ -16,7 +16,7 @@ with open("README.md", 'r', encoding="utf-8") as f:
 
 setup(
     name="crudlib",
-    version="1.0.0",
+    version="1.0.1",
     author="Zheng",
     author_email="zxyful@gmail.com",
     description="One API, More Database.",
@@ -31,15 +31,14 @@ setup(
         "Environment :: Web Environment",
         "Intended Audience :: Developers",
         "Operating System :: OS Independent",
-        "Topic :: Text Processing :: Indexing",
         "Topic :: Utilities",
         "Topic :: Internet",
         "Topic :: Software Development :: Libraries :: Python Modules",
         "License :: OSI Approved :: MIT License",
         "Natural Language :: English",
-        # "Programming Language :: Python",
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
     ]
 )
