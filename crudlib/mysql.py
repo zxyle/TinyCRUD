@@ -198,9 +198,12 @@ class MySQL(DataBase):
             self.connection.commit()
         except Exception as e:
             self._debug_info(e)
-            self.connection.rollback()
+            self.rollback()
         else:
             self._debug_info("commit success.")
+
+    def rollback(self):
+        self.connection.rollback()
 
     def create_trigger(self):
         sql = "create trigger tri before update on test.student for each row set NEW.modify_time=CURRENT_TIMESTAMP;"
