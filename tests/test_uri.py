@@ -5,7 +5,7 @@
 # Desc: 
 
 
-from crudlib.config import DEFAULT_MONGODB_URI, DEFAULT_MYSQL_URI
+from crudlib.config import DEFAULT_MYSQL_URI
 from crudlib.uri import UriParser
 
 
@@ -21,12 +21,3 @@ def test_mysql_uri():
     assert u.user == "root"
     assert u.scheme == "mysql+pymysql"
     assert u.params == {'charset': 'utf8mb4'}
-
-
-def test_mongodb_uri():
-    u = UriParser(DEFAULT_MONGODB_URI)
-    assert u.host in LOCALHOST
-    assert u.password is None
-    assert u.db == "test"
-    assert u.user is None
-    assert u.scheme == "mongodb"

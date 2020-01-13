@@ -5,9 +5,8 @@
 # Desc: 
 
 
-from crudlib.mongo import Mongo
 from crudlib.mysql import MySQL
 from crudlib.sqlite import SQLite
 from crudlib.mariadb import MariaDB
 
-# __all__ = (MySQL, Mongo)
+# __all__ = (MySQL)
