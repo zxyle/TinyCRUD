@@ -28,11 +28,11 @@ class MySQL(DataBase):
         self.cursor = None
         self._debug = debug
 
-    def insert(self, tb, doc):
+    def insert_one(self, tb, doc):
         """
-        Insert Record operation
+        Insert a record operation
         :param tb: mysql table name
-        :param doc: {"name": "crudlib"}
+        :param doc: {"name": "Zheng", "gender":"male"}
         :return:
         """
         # build sql
@@ -48,13 +48,13 @@ class MySQL(DataBase):
 
     def insert_many(self, tb, doc_list):
         """
-        Insert Records operation
+        Insert multi records operation
         :param tb: mysql table name
         :param doc_list: [{}, {}, ...]
         :return:
         """
         for doc in doc_list:
-            self.insert(tb, doc)
+            self.insert_one(tb, doc)
 
     def _get_cursor(self):
         """return cursor object"""
