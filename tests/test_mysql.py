@@ -17,7 +17,7 @@ test_data = {"name": "zxyle", "age": 25, "address": "Hangzhou"}
 def test_insert():
     my.drop_tb(test_table)
     my.create_tb(test_table)
-    assert my.insert(test_table, test_data) is not None
+    assert my.insert_one(test_table, test_data) is not None
 
 
 def test_query():

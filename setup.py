@@ -16,7 +16,7 @@ with open("README.md", 'r', encoding="utf-8") as f:
 
 setup(
     name="crudlib",
-    version="1.1.0",
+    version="1.1.1",
     author="Zheng",
     author_email="zxyful@gmail.com",
     description="One API, More Database.",
