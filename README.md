@@ -15,7 +15,7 @@ just to satisfy the most basic CRUD operations.
 from crudlib.databases import MySQL
 
 my = MySQL()
-my.insert(tb="student", doc={"name": "zxyle"})
+my.insert_one(tb="student", doc={"name": "zxyle"})
 
 rows = my.query(tb="student", condition={"age": ">=18"})
 
