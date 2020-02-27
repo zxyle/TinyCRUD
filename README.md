@@ -12,7 +12,7 @@ just to satisfy the most basic CRUD operations.
 
 ## Quick Start
 ```python
-from crudlib.databases import MySQL
+from crudlib import MySQL
 
 my = MySQL()
 my.insert_one(tb="student", doc={"name": "zxyle"})
