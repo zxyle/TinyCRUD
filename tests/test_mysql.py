@@ -4,7 +4,7 @@
 # Date: 2019/7/26
 # Desc: 
 
-from crudlib.databases import MySQL
+from crudlib import MySQL
 
 uri = "mysql+pymysql://root:root@localhost:3306/mysql?charset=utf8mb4"
 my = MySQL(uri, debug=True)
