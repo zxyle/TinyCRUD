@@ -15,9 +15,9 @@ just to satisfy the most basic CRUD operations.
 from crudlib import MySQL
 
 my = MySQL()
-my.insert_one(tb="student", doc={"name": "zxyle"})
+my.insert_one(tb="developers", doc={"name": "Zheng"})
 
-rows = my.query(tb="student", condition={"age": ">=18"})
+rows = my.query(tb="developers", condition={"age": ">=18"})
 
 # Use SQL directly
 my.execute("SELECT User FROM mysql.user;")
@@ -30,7 +30,7 @@ pip install crudlib
 
 ## Features
 * MySQL
-
+* MariaDB
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for more details.
