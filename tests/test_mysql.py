@@ -22,10 +22,11 @@ def test_insert():
 
 def test_query():
     rows = my.query(test_table)
-    rows.pop("id")
-    rows.pop("create_time")
-    rows.pop("modify_time")
-    assert rows == test_data
+    row = rows[0]
+    row.pop("id")
+    row.pop("create_time")
+    row.pop("modify_time")
+    assert row == test_data
 
 
 def test_update():
@@ -35,7 +36,7 @@ def test_update():
     my.commit()
 
     rows = my.query(test_table)
-    assert rows.get("age") == update_data.get("age")
+    assert rows[0].get("age") == update_data.get("age")
 
 
 def test_delete():
@@ -43,7 +44,7 @@ def test_delete():
     my.delete(test_table, condition)
 
     rows = my.query(test_table)
-    assert rows is None
+    assert rows == tuple()
 
 
 def test_insert_many():
@@ -53,4 +54,4 @@ def test_insert_many():
 def test_rollback():
     my.insert_one(test_table, {"name": "zheng"})
     my.rollback()
-    assert my.query(test_table, {"name": "zheng"}) is None
+    assert my.query(test_table, {"name": "zheng"}) == tuple()
