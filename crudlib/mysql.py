@@ -75,13 +75,7 @@ class MySQL(DataBase):
         cursor.execute(sql, data)
 
         # TODO fetchall fetchone fetchmany
-        rows = cursor.fetchall()
-        if len(rows) == 1:
-            return rows[0]
-        elif len(rows) > 1:
-            return rows
-        elif len(rows) == 0:
-            return cursor.lastrowid
+        return cursor.fetchall()
 
     def create_db(self, db_name=""):
         """Create Database operation"""
@@ -224,7 +218,7 @@ class MySQL(DataBase):
         self.connection.close()
 
     def __repr__(self):
-        key = "version()"
-        sql = f"SELECT {key};"
-        version = self.execute(sql).get(key)
+        expression = "version()"
+        sql = f"SELECT {expression};"
+        version = self.execute(sql)[0].get(expression)
         return "MySQL:<{}> at {}.".format(version, self.connection.host_info)
