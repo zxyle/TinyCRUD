@@ -10,6 +10,13 @@ jobs:
       max-parallel: 3
       matrix:
         python-version: [3.6, 3.7, 3.8]
+    services:
+      mysql:
+        image: mysql:5.7
+        ports: 3306:3306
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: test
 
     steps:
     - uses: actions/checkout@v1
