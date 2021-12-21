@@ -1,10 +1,5 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-# Author: Zheng <zxyful@gmail.com>
-# Date: 2019/7/25
-# Desc: MySQL
-
 import re
+from urllib.parse import unquote
 
 import pymysql
 
@@ -20,7 +15,7 @@ class MySQL(DataBase):
         self.connection = pymysql.connect(host=u.host,
                                           port=u.port,
                                           user=u.user,
-                                          password=u.password,
+                                          password=unquote(u.password),
                                           db=u.db,
                                           charset=u.params.get('charset', 'utf8mb4'),
                                           cursorclass=pymysql.cursors.DictCursor)
@@ -82,7 +77,8 @@ class MySQL(DataBase):
         if not db_name:
             raise ValueError("db name not allowed to be empty.")
 
-        sql = f"CREATE DATABASE IF NOT EXISTS `{db_name}` DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;"
+        sql = f"CREATE DATABASE IF NOT EXISTS `{db_name}` DEFAULT CHARACTER SET utf8mb4 DEFAULT COLLATE " \
+              f"utf8mb4_unicode_ci; "
         self.execute(sql)
         self._debug_info("create database: `{}` success.".format(db_name))
 
