@@ -1,9 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-# Author: Zheng <zxyful@gmail.com>
-# Date: 2019/7/25
-# Desc: 
-
 from urllib.parse import urlparse, unquote
 
 

@@ -1,10 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-# Author: Zheng <zxyful@gmail.com>
-# Date: 2019/7/25
-# Desc: 
-
-
 from crudlib.config import DEFAULT_MYSQL_URI
 from crudlib.uri import UriParser
 

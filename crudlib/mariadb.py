@@ -1,10 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-# Author: Zheng <zxyful@gmail.com>
-# Date: 2019/8/8
-# Desc: 
-
-
 from crudlib.mysql import MySQL
 
 

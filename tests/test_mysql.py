@@ -1,9 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-# Author: Zheng <zxyful@gmail.com>
-# Date: 2019/7/26
-# Desc: 
-
 from crudlib import MySQL
 
 uri = "mysql+pymysql://root:root@localhost:3306/mysql?charset=utf8mb4"
