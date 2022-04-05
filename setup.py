@@ -28,7 +28,7 @@ setup(
         "Intended Audience :: Developers",
         "Operating System :: OS Independent",
         "Topic :: Utilities",
-        "Topic :: Internet",
+        "Topic :: Database",
         "Topic :: Software Development :: Libraries :: Python Modules",
         "License :: OSI Approved :: MIT License",
         "Natural Language :: English",

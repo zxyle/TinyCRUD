@@ -1,7 +1,8 @@
 import re
-from urllib.parse import unquote
+from typing import List, Dict
 
 import pymysql
+from pymysql.cursors import DictCursor
 
 from crudlib.base import DataBase
 from crudlib.config import DEFAULT_MYSQL_URI
@@ -15,7 +16,7 @@ class MySQL(DataBase):
         self.connection = pymysql.connect(host=u.host,
                                           port=u.port,
                                           user=u.user,
-                                          password=unquote(u.password),
+                                          password=u.password,
                                           db=u.db,
                                           charset=u.params.get('charset', 'utf8mb4'),
                                           cursorclass=pymysql.cursors.DictCursor)
@@ -23,7 +24,7 @@ class MySQL(DataBase):
         self.cursor = None
         self._debug = debug
 
-    def insert_one(self, tb, doc):
+    def insert_one(self, tb: str, doc: dict):
         """
         Insert a record operation
         :param tb: mysql table name
@@ -41,7 +42,7 @@ class MySQL(DataBase):
         sql = f"INSERT INTO `{tb}` ({fields_sql}) VALUES ({values_sql});"
         return self.execute(sql, values)
 
-    def insert_many(self, tb, doc_list):
+    def insert_many(self, tb: str, doc_list: List[Dict]):
         """
         Insert multi records operation
         :param tb: mysql table name
@@ -58,7 +59,7 @@ class MySQL(DataBase):
             self._open = True
         return self.cursor
 
-    def execute(self, sql, data=None):
+    def execute(self, sql: str, data=None):
         """
         execute sql operation
         :param sql: SQL statement
@@ -72,7 +73,7 @@ class MySQL(DataBase):
         # TODO fetchall fetchone fetchmany
         return cursor.fetchall()
 
-    def create_db(self, db_name=""):
+    def create_db(self, db_name: str = ""):
         """Create Database operation"""
         if not db_name:
             raise ValueError("db name not allowed to be empty.")
@@ -82,13 +83,13 @@ class MySQL(DataBase):
         self.execute(sql)
         self._debug_info("create database: `{}` success.".format(db_name))
 
-    def drop_db(self, db_name=""):
+    def drop_db(self, db_name: str = ""):
         """Drop database operation"""
         sql = f"DROP DATABASE IF EXISTS {db_name};"
         self.execute(sql)
         self._debug_info("drop database: `{}` success.".format(db_name))
 
-    def create_tb(self, tb=""):
+    def create_tb(self, tb: str = ""):
         """Create table operation"""
         sql = f"""
         CREATE TABLE IF NOT EXISTS `{tb}`(
@@ -102,13 +103,13 @@ class MySQL(DataBase):
         self.execute(sql)
         self._debug_info("create table: `{}` success.".format(tb))
 
-    def drop_tb(self, tb=""):
+    def drop_tb(self, tb: str = ""):
         """Drop table operation"""
         sql = f"DROP TABLE IF EXISTS {tb};"
         self.execute(sql)
         self._debug_info("drop table: `{}` success.".format(tb))
 
-    def query(self, tb, condition=None):
+    def query(self, tb: str, condition=None):
         """Select records operation"""
         condition = condition or {}
         condition_sql, values = self._where(condition)
@@ -118,7 +119,7 @@ class MySQL(DataBase):
         results = self.execute(sql, values)
         return results
 
-    def update(self, tb, doc, condition):
+    def update(self, tb: str, doc, condition):
         """
         Update records operation
         :param tb:
@@ -138,7 +139,7 @@ class MySQL(DataBase):
         self.execute(sql, values + v)
         self._debug_info("update success.")
 
-    def delete(self, tb, condition=None):
+    def delete(self, tb: str, condition=None):
         """Delete records operation"""
         condition = condition or {}
         condition_sql, values = self._where(condition)

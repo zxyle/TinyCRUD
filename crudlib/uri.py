@@ -37,7 +37,7 @@ class UriParser:
 
     @property
     def password(self):
-        return self.handle.password
+        return unquote(self.handle.password)
 
     @property
     def host(self):
